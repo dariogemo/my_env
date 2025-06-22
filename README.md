@@ -1,3 +1,3 @@
-# my_env
+I don't even know what am I doing, why would I tell you.
 
-This is my personal repository for the configurations that I would like to keep track of, so that my environment is persistent when switching workstations. 
+Trying to create a consistent environment accross multiple workspaces. Might add later some scripts to make it more direct.
