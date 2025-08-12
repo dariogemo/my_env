@@ -20,11 +20,11 @@ menu(){
 	printf "4. The Bootleg Boy\n"
 	printf "5. Radio Spinner\n"
 	printf "6. SmoothChill\n"
-	printf "7. PiterPan"
+	printf "7. Radio PiterPan"
 }
 
 main() {
-	choice=$(menu | rofi -dmenu | cut -d. -f1)
+	choice=$(menu | wofi --dmenu | cut -d. -f1)
 
 	case $choice in
 		1)

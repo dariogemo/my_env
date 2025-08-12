@@ -173,6 +173,9 @@ vim.o.confirm = true
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+-- Scroll half a page up with <ctrl+s> instead of <ctrl+u> in normal mode
+vim.keymap.set('n', '<C-s>', '<C-u>', { noremap = true, silent = true })
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
@@ -185,10 +188,10 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
+vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
+vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
+vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
@@ -1014,3 +1017,20 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+--
+-- MY SETTINGS
+
+vim.keymap.set('n', '<leader>r', function()
+  vim.cmd 'w'
+
+  local file = vim.api.nvim_buf_get_name(0)
+  local dir = vim.fn.fnamemodify(file, ':h')
+  local filename = vim.fn.fnamemodify(file, ':t')
+
+  vim.cmd 'botright split'
+  vim.cmd 'enew'
+  vim.fn.termopen { 'sh', '-c', 'cd ' .. dir .. ' && python3 ' .. filename }
+  vim.cmd 'startinsert'
+end, { noremap = true, silent = true })
+
+vim.cmd 'autocmd BufEnter * lcd %:p:h'
