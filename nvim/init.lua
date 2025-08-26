@@ -199,7 +199,7 @@ require('lazy').setup({
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
   'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
-
+  { 'nvim-treesitter/nvim-treesitter-textobjects', after = 'nvim-treesitter', requires = 'nvim-treesitter/nvim-treesitter' },
   -- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for Kickstart
   --
   --  Here are some example plugins that I've included in the Kickstart repository.
@@ -261,6 +261,8 @@ vim.keymap.set('n', '<leader>r', function()
 end, { noremap = true, silent = true })
 
 vim.cmd 'autocmd BufEnter * lcd %:p:h'
+
+local util = require 'vim.lsp.util'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
