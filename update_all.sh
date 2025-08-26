@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e  # Exit if any command fails
 
-BACKUP_DIR="$HOME/config-backup"
+BACKUP_DIR="$HOME/Env"
 SCRIPT_NAME="$(basename "$0")"
 
 SOURCE_DIRS=(
@@ -21,7 +21,9 @@ echo "=== Removing old configs from $BACKUP_DIR ==="
 if [ -w "$BACKUP_DIR" ]; then
     find "$BACKUP_DIR" -mindepth 1 \
         ! -name "$SCRIPT_NAME" \
-        -exec sudo rm -rf {} +
+	! -path "$BACKUP_DIR/.git*" \
+	! -name "$BACKUP_DIR/.gitignore" \
+        -exec rm -rf {} +
 fi
 
 echo "=== Copying configs to $BACKUP_DIR ==="

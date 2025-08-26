@@ -104,8 +104,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias conda="micromamba"
-alias vi="nvim"
-alias vifzf='vi "$(fzf)"'
+alias nvimfzf='nvim "$(fzf)"'
+alias paru-clean='orphans=$(paru -Qdtq); [[ -n $orphans ]] && paru -Rns $orphans || echo "No orphaned packages found."'
 #
 # PROVA
 bindkey -s ^f "tmux-sessionizer\n"
@@ -134,3 +134,8 @@ function y() {
 	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
 	rm -f -- "$tmp"
 }
+
+
+# PROVA PER TENSROFLOW
+export XLA_FLAGS=--xla_gpu_cuda_data_dir=/opt/cuda
+
