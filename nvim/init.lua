@@ -258,11 +258,46 @@ vim.keymap.set('n', '<leader>r', function()
 
   -- enter insert mode in the terminal
   vim.cmd 'startinsert'
-end, { noremap = true, silent = true })
+end, { noremap = true, silent = true, desc = 'Run Python file' })
 
 vim.cmd 'autocmd BufEnter * lcd %:p:h'
 
 local util = require 'vim.lsp.util'
+
+-- harpoon
+local harpoon = require 'harpoon'
+
+-- REQUIRED
+harpoon:setup()
+-- REQUIRED
+
+vim.keymap.set('n', '<leader>a', function()
+  harpoon:list():add()
+end, { desc = '[A]dd file to harpoon list' })
+vim.keymap.set('n', '<C-e>', function()
+  harpoon.ui:toggle_quick_menu(harpoon:list())
+end)
+
+vim.keymap.set('n', '<leader>1', function()
+  harpoon:list():select(1)
+end, { desc = 'Jump to harpooned file [1]' })
+vim.keymap.set('n', '<leader>2', function()
+  harpoon:list():select(2)
+end, { desc = 'Jump to harpooned file [2]' })
+vim.keymap.set('n', '<leader>3', function()
+  harpoon:list():select(3)
+end, { desc = 'Jump to harpooned file [3]' })
+vim.keymap.set('n', '<leader>4', function()
+  harpoon:list():select(4)
+end, { desc = 'Jump to harpooned file [4]' })
+
+-- Toggle previous & next buffers stored within Harpoon list
+vim.keymap.set('n', '<C-S-P>', function()
+  harpoon:list():prev()
+end)
+vim.keymap.set('n', '<C-S-N>', function()
+  harpoon:list():next()
+end)
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
