@@ -11,6 +11,7 @@ SOURCE_DIRS=(
     "$HOME/.config/ghostty/"
     "$HOME/.config/fish/"
     "$HOME/.config/wofi/"
+    "/etc/keyd/"
 )
 
 SOURCE_FILES=(
