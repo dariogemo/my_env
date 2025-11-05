@@ -1,0 +1,4 @@
+[text]
+mime = ["text/plain"]
+run = "nvim \"$1\""
+block = true

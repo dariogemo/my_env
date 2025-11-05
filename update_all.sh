@@ -11,6 +11,7 @@ SOURCE_DIRS=(
     "$HOME/.config/ghostty/"
     "$HOME/.config/fish/"
     "$HOME/.config/wofi/"
+    "$HOME/.config/yazi/"
     "/etc/keyd/"
 )
 
@@ -23,7 +24,7 @@ if [ -w "$BACKUP_DIR" ]; then
     find "$BACKUP_DIR" -mindepth 1 \
         ! -name "$SCRIPT_NAME" \
 	! -path "$BACKUP_DIR/.git*" \
-	! -name "$BACKUP_DIR/.gitignore" \
+	! -wholename "$BACKUP_DIR/.gitignore" \
         -exec rm -rf {} +
 fi
 

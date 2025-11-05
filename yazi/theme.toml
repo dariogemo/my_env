@@ -1,0 +1,4 @@
+# --- Main Theme Configuration ---
+[flavor]
+light = "kanagawa-lotus"
+dark = "vscode-dark-plus"

@@ -1,0 +1,8 @@
+[mgr]
+ratio=[2,3,3]
+linemode="size"
+
+[preview]
+wrap="yes"
+image_quality=50
+

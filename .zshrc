@@ -105,8 +105,18 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias conda="micromamba"
 alias nvimfzf='nvim "$(fzf)"'
-alias paru-clean='orphans=$(paru -Qdtq); [[ -n $orphans ]] && paru -Rns $orphans || echo "No orphaned packages found."'
-#
+#alias paru-clean='orphans=$(paru -Qdtq); [[ -n $orphans ]] && paru -Rns $orphans || echo "No orphaned packages found."'
+unalias paru-clean 2>/dev/null
+
+paru-clean() {
+    orphans=$(paru -Qdtq)
+    if [[ -n $orphans ]]; then
+        paru -Rns $orphans
+    else
+        echo "No orphaned packages found."
+    fi
+}
+
 # PROVA
 bindkey -s ^f "tmux-sessionizer\n"
 
@@ -139,3 +149,10 @@ function y() {
 # PROVA PER TENSROFLOW
 export XLA_FLAGS=--xla_gpu_cuda_data_dir=/opt/cuda
 
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
