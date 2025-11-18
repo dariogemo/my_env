@@ -302,3 +302,12 @@ end)
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
 --
+--
+--
+-- prova per background uguale al terminal
+vim.cmd [[
+  hi Normal ctermbg=none guibg=none
+  hi NormalNC ctermbg=none guibg=none
+  hi SignColumn ctermbg=none guibg=none
+  hi EndOfBuffer ctermbg=none guibg=none
+]]

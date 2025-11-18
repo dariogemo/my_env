@@ -11,6 +11,10 @@ return { -- You can easily change to a different colorscheme.
       styles = {
         comments = { italic = false }, -- Disable italics in comments
       },
+      on_colors = function(colors)
+        colors.fg_gutter = '#827E7C'
+        colors.comment = '#8C8879'
+      end,
     }
 
     -- Load the colorscheme here.
