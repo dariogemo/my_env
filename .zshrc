@@ -5,6 +5,9 @@
 export ZSH="$HOME/.oh-my-zsh"
 export PATH="$HOME/.local/bin:$PATH"
 
+# Path to the scripts directory
+export PATH="$HOME/.scripts:$PATH"
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -71,7 +74,11 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(
+	git 
+	poetry 
+	zsh-autosuggestions
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -105,8 +112,7 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias conda="micromamba"
 alias nvimfzf='nvim "$(fzf)"'
-#alias paru-clean='orphans=$(paru -Qdtq); [[ -n $orphans ]] && paru -Rns $orphans || echo "No orphaned packages found."'
-unalias paru-clean 2>/dev/null
+alias wordsfzf="ag --nobreak --nonumbers --noheading . | fzf"
 
 paru-clean() {
     orphans=$(paru -Qdtq)
@@ -124,8 +130,8 @@ export QT_QPA_PLATFORMTHEME=qt6ct
 
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'micromamba shell init' !!
-export MAMBA_EXE='/usr/bin/micromamba';
-export MAMBA_ROOT_PREFIX='/home/dario/.micromamba';
+export MAMBA_EXE='/home/dario/.local/bin/micromamba';
+export MAMBA_ROOT_PREFIX='/home/dario/micromamba';
 __mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__mamba_setup"
@@ -156,3 +162,11 @@ function y() {
 	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
 	rm -f -- "$tmp"
 }
+export PATH="/home/dario/.config/herd-lite/bin:$PATH"
+export PHP_INI_SCAN_DIR="/home/dario/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
+
+# autocompletion
+autoload -Uz compinit
+compinit
+
+export PATH="$HOME/.cargo/bin:$PATH"

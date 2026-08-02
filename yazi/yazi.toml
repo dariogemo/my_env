@@ -1,8 +1,56 @@
 [mgr]
 ratio=[2,3,3]
 linemode="size"
+show_hidden=true
+sort_by = "natural"
+sort_numeric = true
+sort_reverse = false
+sort_dir_first = true
 
 [preview]
 wrap="yes"
 image_quality=50
 
+[opener]
+edit = [
+  { run = 'nvim "%s"', block = true }
+]
+image = [
+  { run = 'eog "%s"', orphan = true }
+]
+pdf = [
+  { run = 'evince "%s"', orphan = true }
+]
+libreoffice = [
+  { run = 'libreoffice "%s"', orphan = true }
+]
+html = [
+  { run = 'brave-browser "%s"', orphan = true }
+]
+
+[open]
+rules = [
+  { url = "*.html", use = "html" },
+  { url = "*.htm",  use = "html" },
+  { mime = "application/json",    use = "edit" },
+  { mime = "*/*+json",            use = "edit" },
+  { mime = "application/javascript",    use = "edit" },
+  { mime = "text/csv", use = "libreoffice" },
+  { mime = "text/*",  use = "edit" },
+  { mime = "image/*", use = ["open", "image"] },
+  { mime = "application/pdf", use = ["open", "pdf"] },
+  { mime = "application/vnd.openxmlformats-officedocument", use =  "libreoffice" },
+  { mime = "application/vnd.oasis.opendocument.text", use =  "libreoffice" }
+]
+
+[[plugin.prepend_fetchers]]
+id  = "git"
+url = "*"
+run = "git"
+group = "git"
+
+[[plugin.prepend_fetchers]]
+id  = "git"
+url = "*/"
+run = "git"
+group = "git"

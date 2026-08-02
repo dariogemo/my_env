@@ -269,14 +269,16 @@ local harpoon = require 'harpoon'
 
 -- REQUIRED
 harpoon:setup()
--- REQUIRED
 
-vim.keymap.set('n', '<leader>a', function()
+vim.keymap.set('n', '<leader>ha', function()
   harpoon:list():add()
 end, { desc = '[A]dd file to harpoon list' })
-vim.keymap.set('n', '<C-e>', function()
+vim.keymap.set('n', '<leader>he', function()
   harpoon.ui:toggle_quick_menu(harpoon:list())
-end)
+end, { desc = 'Toggle quick menu' })
+vim.keymap.set('n', '<leader>hr', function()
+  require('harpoon'):list():remove()
+end, { desc = '[R]emove file from Harpoon' })
 
 vim.keymap.set('n', '<leader>1', function()
   harpoon:list():select(1)
@@ -299,6 +301,9 @@ vim.keymap.set('n', '<C-S-N>', function()
   harpoon:list():next()
 end)
 
+-- boh
+vim.o.background = 'dark' -- or "light" for light mode
+vim.cmd [[colorscheme tokyonight]]
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
 --

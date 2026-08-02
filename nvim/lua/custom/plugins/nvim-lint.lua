@@ -1,26 +1,28 @@
 return {
-  { -- Linting for Python files using pylint
+  {
     'mfussenegger/nvim-lint',
+    event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       local lint = require 'lint'
 
-      -- Configure linters by filetype
+      -- Use Ruff for Python linting
       lint.linters_by_ft = {
-        python = { 'pylint' },
+        python = { 'ruff' },
       }
 
-      -- Run lint automatically on save
-      vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
-        pattern = '*.py',
+      -- Automatically run linting on save and open
+      local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
+      vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost' }, {
+        group = lint_augroup,
         callback = function()
           lint.try_lint()
         end,
       })
 
-      -- Optional: keymap to run lint manually
+      -- Manual lint trigger with <space>l
       vim.keymap.set('n', '<leader>l', function()
         lint.try_lint()
-      end, { desc = 'Run Py[l]int' })
+      end, { desc = 'Run [l]inter' })
     end,
   },
 }

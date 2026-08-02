@@ -1,6 +1,6 @@
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
-"$schema" = "https://yazi-rs.github.io/schemas/theme.json"
+#"$schema" = "https://yazi-rs.github.io/schemas/theme.json"
 
 # vscode-dark-plus (Dark+)
 # https://github.com/956MB/vscode.yazi/blob/main/themes/vscode-dark-plus/
@@ -45,7 +45,6 @@ marker_selected = { fg = "#264F78", bg = "#264F78" }
 # Tab
 tab_active   = { fg = "#D4D4D4", bg = "#1E1E1E" }
 tab_inactive = { fg = "#D4D4D4", bg = "#2D2D2D" }
-tab_width    = 1
 # Count
 count_copied   = { fg = "#1E1E1E", bg = "#73C991" }
 count_cut      = { fg = "#1E1E1E", bg = "#F14C4C" }
@@ -159,18 +158,18 @@ rules = [
     { mime = "application/msword", fg = "#569CD6" },
     { mime = "application/vnd.openxmlformats-officedocument.*", fg = "#569CD6" },
     # Fallback
-    { name = "*", fg = "#D4D4D4" },
-    { name = "*/", fg = "#569CD6" },
+    { url = "*", fg = "#D4D4D4" },
+    { url = "*/", fg = "#569CD6" },
     # Executable
-    { name = "*", category = "executable", fg = "#0DBC79", bg = "#1E1E1E" },
+    { url = "*", category = "executable", fg = "#0DBC79", bg = "#1E1E1E" },
     # Directories
-    { name = "*/", fg = "#2472C8", bg = "#1E1E1E" },
+    { url = "*/", fg = "#2472C8", bg = "#1E1E1E" },
     # Hidden files
-    { name = ".*", fg = "#666666" },
+    { url = ".*", fg = "#666666" },
     # Symlinks
-    { name = "*", category = "link", fg = "#0DBC79", bg = "#1E1E1E" },
+    { url = "*", category = "link", fg = "#0DBC79", bg = "#1E1E1E" },
     # Broken symlinks
-    { name = "*", category = "broken", fg = "#CD3131", bg = "#3A1212" },
+    { url = "*", category = "broken", fg = "#CD3131", bg = "#3A1212" },
 ]
 
 [icon]
